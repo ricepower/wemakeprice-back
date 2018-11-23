@@ -18,15 +18,15 @@ public class CharacterAndNumberParser implements Parser {
 		Arrays.sort(characteredContents);
 		String sortedContents = new String(characteredContents);
 		
-		Queue<Character> upperCase = sortedContents.chars().mapToObj(element -> (char) element).filter(element -> Character.isUpperCase(element)).collect(Collectors.toCollection(LinkedList::new));
-		Queue<Character> lowerCase = sortedContents.chars().mapToObj(element -> (char) element).filter(element -> Character.isLowerCase(element)).collect(Collectors.toCollection(LinkedList::new));
-		Queue<Character> number = sortedContents.chars().mapToObj(element -> (char) element).filter(element -> Character.isDigit(element)).collect(Collectors.toCollection(LinkedList::new));
+		Queue<Character> upperCaseWords = sortedContents.chars().mapToObj(element -> (char) element).filter(element -> Character.isUpperCase(element)).collect(Collectors.toCollection(LinkedList::new));
+		Queue<Character> lowerCaseWords = sortedContents.chars().mapToObj(element -> (char) element).filter(element -> Character.isLowerCase(element)).collect(Collectors.toCollection(LinkedList::new));
+		Queue<Character> numbers = sortedContents.chars().mapToObj(element -> (char) element).filter(element -> Character.isDigit(element)).collect(Collectors.toCollection(LinkedList::new));
 		
 		StringBuilder builder = new StringBuilder();
 		int i = 0;
-		while (isAllQueueNotEmpty(upperCase, number, lowerCase)) {
-			pollCharacter(upperCase, lowerCase, builder, i);
-			pollNumber(number, builder);
+		while (isAllQueueNotEmpty(upperCaseWords, numbers, lowerCaseWords)) {
+			pollCharacter(upperCaseWords, lowerCaseWords, builder, i);
+			pollNumber(numbers, builder);
 			i++;
 		}
 		return builder.toString();

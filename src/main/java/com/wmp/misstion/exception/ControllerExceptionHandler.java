@@ -15,4 +15,9 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> badRequestExceptionHandle(IllegalArgumentException exception, HttpServletRequest request) {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
 	}
+	
+	@ExceptionHandler(NullPointerException.class)
+	public ResponseEntity<Object> badRequestExceptionHandle(NullPointerException exception, HttpServletRequest request) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+	}
 }

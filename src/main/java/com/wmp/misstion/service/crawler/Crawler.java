@@ -20,6 +20,7 @@ public abstract class Crawler {
 	
 	public String crawling(String url) {
 		try {
+			if (parser == null) throw new NullPointerException("parser cannnot be null");
 			document = Jsoup.connect(url).get();
 			return parser.parse(contentsType.get());
 		}
